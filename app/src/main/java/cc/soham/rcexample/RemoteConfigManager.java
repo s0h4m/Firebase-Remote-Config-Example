@@ -28,7 +28,8 @@ public class RemoteConfigManager {
     public static void getSurvey(final OnSurveyDeterminedListener onSurveyDeterminedListener) {
         final FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         firebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
-        firebaseRemoteConfig.fetch()
+        firebaseRemoteConfig
+                .fetch()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -37,14 +38,15 @@ public class RemoteConfigManager {
                         // retrieves the surveys and initiates a callback
                         retrieveSurveyAndCallBack(firebaseRemoteConfig, onSurveyDeterminedListener);
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                e.printStackTrace();
-                // retrieves the surveys and initiates a callback
-                retrieveSurveyAndCallBack(firebaseRemoteConfig, onSurveyDeterminedListener);
-            }
-        });
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        e.printStackTrace();
+                        // retrieves the surveys and initiates a callback
+                        retrieveSurveyAndCallBack(firebaseRemoteConfig, onSurveyDeterminedListener);
+                    }
+                });
     }
 
     /**
