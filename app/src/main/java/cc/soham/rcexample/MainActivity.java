@@ -1,6 +1,8 @@
 package cc.soham.rcexample;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkForSurvey() {
         RemoteConfigManager.getSurvey(new RemoteConfigManager.OnSurveyDeterminedListener() {
             @Override
-            public void onSurveyDetermined(final Survey survey) {
+            public void onSurveyDetermined(@Nullable final Survey survey) {
                 if (survey != null && survey.isEnabled()) {
                     updateSurveyEnabled(survey);
                 }
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param survey instance of a {@link com.google.firebase.remoteconfig.FirebaseRemoteConfig} variable
      */
-    private void updateSurveyEnabled(final Survey survey) {
+    private void updateSurveyEnabled(@NonNull final Survey survey) {
         Snackbar.make(coordinatorLayout,
                 survey.getMessage(),
                 survey.isPermanent() ? Snackbar.LENGTH_INDEFINITE : Snackbar.LENGTH_LONG)

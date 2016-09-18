@@ -1,6 +1,7 @@
 package cc.soham.rcexample;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,7 +18,7 @@ public class RemoteConfigManager {
     private static final String KEY_SURVEY = "survey";
 
     interface OnSurveyDeterminedListener {
-        void onSurveyDetermined(Survey survey);
+        void onSurveyDetermined(@Nullable Survey survey);
     }
 
     /**
